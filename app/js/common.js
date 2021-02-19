@@ -374,6 +374,7 @@ $(function () {
         //         price = (0.80 * val) + design
         //         break;
         // }
+        console.log(price)
         TweenMax.to(priceMid, 1, { score: `${price}`, onUpdate: updateHandler });
 
     }
@@ -594,9 +595,9 @@ $(function () {
         $('#product_form_design').on('change', function () {
             if ($(this).is(':checked')) {
                 $('.fileuploader').html('')
-                priceCange(productId, productPrice, productEdition, 500)
-            } else {
                 priceCange(productId, productPrice, productEdition)
+            } else {
+                priceCange(productId, productPrice, productEdition, 0)
                 $('.fileuploader').html(fileUpload)
                 uploaderImg('.add_photo-item', '#js-photo-upload', '#uploadImagesList', false, false);
             }
