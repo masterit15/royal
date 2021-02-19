@@ -1,0 +1,101 @@
+@import 'utils/mixin'
+@import 'utils/libs'
+@import 'utils/fonts'
+@import 'utils/vars'
+
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+body
+  overflow-x: hidden
+  background-color: #f0f0f0
+  font-family: $defaultFont
+  color: #4A4A4A
+#wrapper
+  position: relative
+  background-color: #f0f0f0
+  z-index: 10
+.grecaptcha-badge
+  z-index: 2
+.btn
+  cursor: pointer
+  padding: 15px 50px
+  text-align: center
+  text-transform: uppercase
+  font-size: 18px
+  line-height: 21px
+  align-items: center
+  letter-spacing: 0.02em
+  border-radius: 7px
+  border: none
+  &:hover, &:focus
+    outline: none
+  &-secondary
+    background-color: $darkGrey
+    color: #fff
+    text-transform: uppercase
+    font-size: 18px
+    line-height: 21px
+    align-items: center
+    letter-spacing: 0.02em
+  &-outline-secondary
+    border: 1px solid $darkGrey
+section
+  margin: 0 70px
+  position: relative
+.section
+  &_title
+    font-weight: 600
+    font-size: 45px
+    line-height: 75px
+    margin-top: 50px
+    margin-bottom: 80px
+    font-family: $titleFont
+    h1
+      max-width: 540px
+  &_desc
+    text-align: left
+    margin-bottom: 57px
+  &_nav
+    position: fixed
+    list-style: none
+    right: 70px
+    top: 40%
+    padding: 0
+    margin: 0
+    z-index: 99
+    li
+      display: block
+      cursor: pointer
+      transform: translate(50px,0px)
+      opacity: 0
+      width: 15px
+      height: 15px
+      overflow: hidden
+      border-radius: 100%
+      border: 2px solid #353535
+      margin-bottom: 10px
+      &.active
+        background-color: #353535
+      a
+        display: block
+        width: 100%
+        height: 100%
+        margin-left: 10px
+        
+.decor_img
+  position: absolute
+  right: -70px
+  bottom: -200px
+  display: none
+@import 'hero'
+@import 'services';
+@import 'form'
+@import 'product'
+@import 'advantages'
+@import 'works'
+@import 'partner'
+@import 'footer'
+@import 'media'
+

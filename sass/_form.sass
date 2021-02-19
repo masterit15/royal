@@ -1,0 +1,596 @@
+.forms
+.product_params
+  display: flex
+  width: 100%
+  justify-content: flex-start
+  flex-direction: row
+  .question
+    display: block
+    position: relative
+    cursor: pointer
+    width: 25px
+    height: 100%
+    font-size: 1.5rem
+    margin: auto 10px
+    color: #a5a5a5
+    &:hover
+      .question_text
+        display: block
+    &_text
+      cursor: text
+      position: absolute
+      display: none
+      top: -5px
+      left: 33px
+      width: 260px
+      height: auto
+      font-size: 0.9rem
+      padding: 15px
+      background-color: #fff
+      border-radius: 7px
+      box-shadow: 0px 8px 11px rgba(0, 0, 0, 0.03)
+      z-index: 20
+      &::before
+        content: ''
+        position: absolute
+        top: 7px
+        left: -10px
+        margin: auto
+        width: 0
+        height: 0
+        border-style: solid
+        border-width: 10px 10px 10px 0
+        border-color: transparent #fff transparent transparent
+#product_form
+  position: relative
+  width: 100%
+  height: 100%
+  display: flex
+  justify-content: flex-end
+  flex-direction: column
+  flex-flow: wrap
+  column-gap: 65px
+  max-width: 650px
+  & .form_bottom
+    position: relative
+    display: flex
+    justify-content: center
+    flex-direction: column
+    align-items: center
+    width: 100%
+    &::before
+      content: ''
+      position: absolute
+      left: 0
+      right: 0
+      top: 10px
+      margin: auto
+      background-color: rgba(53, 53, 53, 0.11)
+      width: 100%
+      max-width: 256px
+      height: 4px
+    & .price
+      cursor: pointer
+      position: relative
+      display: flex
+      justify-content: space-between
+      width: 100%
+      height: 60px
+      max-width: 220px
+      margin-top: 40px
+      margin-bottom: 10px
+      background-color: #fff
+      box-shadow: 0px 8px 11px rgba(0, 0, 0, 0.03)
+      border-radius: 7px
+      overflow: hidden
+      transition: all .3s ease
+      &:hover
+        background-color: #F5F5F5
+        transition: all .3s ease
+      &_right, &_left
+        img
+          max-width: 100%
+          height: 30px
+      &_right
+        background-color: #4A4A4A
+        flex-basis: 30%
+        display: flex
+        align-items: center
+        justify-content: center 
+      &_mid
+        display: flex
+        align-items: center
+        justify-content: center 
+        flex-direction: column
+        font-size: 12px
+        .prices
+          font-size: 14px
+          font-weight: 600
+          font-family: $titleFont
+          .fa
+            margin-right: 2px
+      &_left
+        flex-basis: 30%
+        display: flex
+        align-items: center
+        justify-content: center
+        
+    & .close
+      cursor: pointer
+      font-size: 16px
+      line-height: 120%
+      text-decoration-line: underline
+      color: #4A4A4A
+      opacity: 0.8
+
+  & .mail_or_phone
+    position: relative
+    height: 40px
+    margin-top: 10px
+    margin-bottom: 20px
+    & .input
+      margin: 0
+      padding-left: 35px
+    &_val
+      position: absolute
+      width: 20px
+      height: 20px
+      display: block
+      left: 10px
+      top: 0
+      bottom: 0
+      margin: auto
+      color: rgba(53, 53, 53, 0.22)
+      opacity: 0.8
+  & .form_item
+    width: 290px
+    display: flex
+    flex-direction: column
+  & label
+    display: block
+    position: relative
+    width: 100%
+    font-size: 18px
+    font-family: $futuraBook
+    line-height: 120%
+    color: #4A4A4A
+    opacity: 0.8
+  & .input
+    background: #FFFFFF
+    box-shadow: 0px 8px 11px rgba(0, 0, 0, 0.03)
+    border-radius: 7px
+    height: 40px
+    padding: 0 25px
+    border: none
+    width: 100%
+    margin-top: 10px
+    margin-bottom: 20px
+    font-size: 18px
+    font-family: $futuraBook
+    font-weight: 600
+    &:active, &:focus, &:valid
+      background-color: #fff
+      outline: none
+  & .select2
+    width: 100%!important
+    margin-top: 10px!important
+    margin-bottom: 20px!important
+    &-selection
+      border: none
+      height: 40px
+      border-radius: 7px
+      &:active, &:focus
+        outline: none
+      &__rendered
+        line-height: 40px
+.select2-dropdown
+  border: none
+  top: 10px
+  padding: 20px
+  max-width: auto
+  box-shadow: 0px 8px 11px rgba(0, 0, 0, 0.03)
+  &::before
+    content: ''
+    position: absolute
+    top: -10px
+    left: 0
+    right: 0
+    margin: auto
+    width: 0
+    height: 0
+    border-style: solid
+    border-width: 0 10px 10px 10px
+    border-color: transparent transparent #fff transparent
+.select2-container--open .select2-dropdown--below
+  border-radius: 7px
+.select2-container--default .select2-results__option--selected
+  background-color: transparent
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable
+  background-color: transparent
+  color: #4A4A4A
+  font-family: $futuraBook
+  font-size: 16px
+.select2-container--default .select2-selection--single .select2-selection__arrow
+  height: 100%
+  right: 5px
+.error_text
+  color: $red
+.range
+  position: relative
+  display: flex
+  justify-content: space-between
+  flex-direction: row
+  flex-wrap: nowrap
+  gap: 15px
+  &.error
+    &_text
+      
+    .js-range .ui-slider-range
+      background-color: $red
+  &_input
+    background-color: #fff
+    position: relative
+    display: flex
+    justify-content: center
+    flex-direction: column
+    width: 100%
+    height: 40px
+    border-radius: 7px
+    padding: 0 12px
+    margin: 10px 0
+  &_value
+    position: relative
+    flex-basis: 40%
+    height: 40px
+    & .arrow
+      position: absolute
+      left: 8px
+      top: 5px
+      height: 100%
+      display: flex
+      justify-content: space-around
+      flex-direction: column
+      align-items: center
+      &-minus, &-plus
+        cursor: pointer
+        font-weight: bold
+        height: 15px
+        font-weight: 900
+        font-size: 10px
+        line-height: 105%
+        color: rgba(53, 53, 53, 0.5)
+        & .fa
+          font-size: 22px
+      &-minus
+      &-plus
+    & input[type="text"]
+      background: #FFFFFF
+      box-shadow: 0px 8px 11px rgba(0, 0, 0, 0.03)
+      border-radius: 7px
+      height: 40px
+      padding-left: 25px
+      border: none
+      width: 100%
+      margin-top: 10px
+      margin-bottom: 20px
+      color: #4A4A4A
+      font-weight: 600
+      font-size: 14px
+.js-range
+  width: 100%
+  border: 0
+  height: 4px
+  background: rgba(107, 107, 107, 0.2)
+  outline: none
+  border-radius: 50px
+  .ui-slider-handle
+    position: absolute
+    margin: 0 0 0 -9px
+    border-radius: 100%
+    background: #fff
+    border: 0
+    height: 10px
+    width: 10px
+    outline: none
+    cursor: pointer
+    border-radius: 50px
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25)
+
+    &:hover, &:focus
+      -webkit-transform: scale(1.1)
+      -moz-transform: scale(1.1)
+      -o-transform: scale(1.1)
+      -ms-transform: scale(1.1)
+      transform: scale(1.1)
+
+  .ui-slider-range
+    background: #3C6D71
+    border-radius: 50px
+
+  #currentVal
+    position: absolute
+    font-size: 12px
+    font-weight: bold
+    color: #b8b8b8
+    width: 160px
+    text-align: center
+    margin-top: -40px
+    
+.checkbox, .radio, .switch
+  color: $blue
+  margin: 0 0 12px 0
+  display: table
+  cursor: pointer
+
+.checkbox.inline, .radio.inline, .switch.inline
+  margin: 0 12px 0 0
+  display: inline-block
+
+.checkbox input, .radio input, .switch input
+  display: none
+
+.checkbox input + span, .radio input + span, .switch input + span
+  height: 22px
+  position: relative
+  display: block
+  font-size: 16px
+  line-height: 22px
+  color: #4A4A4A
+  opacity: 0.8
+
+.checkbox input + span
+  &:before, &:after
+    content: ''
+    display: block
+    left: 0
+    top: 0
+    position: absolute
+
+.radio input + span
+  &:before, &:after
+    content: ''
+    display: block
+    left: 0
+    top: 0
+    position: absolute
+
+.switch input + span
+  &:before, &:after
+    content: ''
+    display: block
+    left: 0
+    top: 0
+    position: absolute
+
+.checkbox input + span:before, .radio input + span:before, .switch input + span:before
+  height: 22px
+  background: #fff
+  box-shadow: 0px 8px 11px rgba(0, 0, 0, 0.03)
+  transition: background .3s ease, border-color .3s ease
+
+.checkbox input + span:after, .radio input + span:after, .switch input + span:after
+  transition: opacity .2s ease,  background .2s ease, -webkit-transform .3s ease
+  transition: transform .3s ease, opacity .2s ease,  background .2s ease
+  transition: transform .3s ease, opacity .2s ease,  background .2s ease, -webkit-transform .3s ease
+
+.checkbox input:checked + span:before, .radio input:checked + span:before, .switch input:checked + span:before
+  background: #fff
+  border-color: $blue
+
+.checkbox input:checked + span:after, .radio input:checked + span:after, .switch input:checked + span:after
+  transition: opacity 0.3s ease, background 0.3s ease, transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2)
+
+.checkbox:hover input:not(:checked) + span:before, .radio:hover input:not(:checked) + span:before, .switch:hover input:not(:checked) + span:before
+  border-color: $blue
+
+.checkbox input + span, .radio input + span
+  padding-left: 22px
+
+.checkbox input + span:not(:empty), .radio input + span:not(:empty)
+  padding-left: 30px
+
+.checkbox input + span:before, .radio input + span:before
+  width: 22px
+
+.checkbox input + span:after, .radio input + span:after
+  opacity: 0
+
+.checkbox input:checked + span:after, .radio input:checked + span:after
+  opacity: 1
+
+.checkbox input
+  + span
+    &:before
+      border-radius: 5px
+    &:after
+      width: 5px
+      height: 9px
+      border: 3px solid #fff
+      border-top: 0
+      border-left: 0
+      left: 8px
+      top: 5px
+      transform: rotate(20deg)
+
+  &:checked 
+    + span:before
+      background-color: $blue
+    + span:after
+      transform: rotate(43deg) translate(1px, 0)
+
+.radio input
+  + span
+    &:before
+      border-radius: 50%
+
+    &:after
+      border-radius: 50%
+      left: -2px
+      top: -2px
+      width: 26px
+      height: 26px
+      background: $blue
+      opacity: 0
+      transform: scale(0.6)
+
+  &:checked 
+    + span:before
+      background-color: $blue
+    + span:after
+      background: #fff
+      transform: scale(0.4)
+.switch
+  input
+    + span
+      padding-left: 38px
+
+      &:not(:empty)
+        padding-left: 46px
+
+      &:before
+        width: 38px
+        height: 20px
+        border-radius: 15px
+        box-shadow: inset 0 0 2px 1px rgba(0, 0, 0, 0.3)
+
+      &:after
+        left: 4px
+        top: 2px
+        border-radius: 50%
+        width: 16px
+        height: 16px
+        background: $blue
+
+    &:checked 
+      + span:before
+        background-color: $blue
+      + span:after
+        background: #fff
+        transform: translateX(16px)
+
+  &:hover input:not(:checked) + span:after
+    background: $blue
+
+.form_row
+  &_text
+    font-size: 14px
+    text-align: left
+    margin-bottom: 20px
+  &__photo-previews
+    width: 100%
+    min-height: 80px
+    text-align: center
+    position: relative
+    & #js-photo-upload
+      position: absolute
+      width: 100%
+      height: 100%
+      left: 0
+      top: 0
+      display: none
+    & .add_photo
+      &-content
+        width: 100%
+        height: auto
+      &-item
+        min-height: 70px
+        line-height: 70px
+        cursor: pointer
+        font-size: 1.2rem
+        border: 2px dashed $grey
+        border-radius: 5px
+        margin-bottom: 20px
+        transition: all .3s ease
+        &:hover
+          transition: all .3s ease
+          background-color: #f9f9f9
+    & #uploadImagesList
+      padding: 0
+      margin: 0
+      width: 100%
+      display: flex
+      justify-content: center
+      & .item
+        width: 80px
+        min-height: 65px 
+        margin-left: 5px
+        border: 2px dashed $grey
+        padding: 0
+        border-radius: 4px
+        overflow: hidden
+        box-shadow: none
+        position: relative
+        transition: all .3s ease
+        // &::after
+        //   content: ''
+        //   position: absolute
+        //   width: 100%
+        //   height: 100%
+        //   left: 0
+        //   top: 0
+        //   opacity: 0
+        //   background-color: rgba($green, 0.6)
+        & .img-wrap, & .icon-wrap
+          position: absolute
+          left: 0
+          top: 0
+          width: 100%
+          height: 100%
+          overflow: hidden
+          & img
+            height: 100%
+            width: auto
+        & .icon-wrap
+          text-align: center
+          line-height: 130px
+          & .fa
+            font-size: 4rem
+        &:hover
+          box-shadow: none
+          border: 2px dashed $green
+          transition: all .3s ease
+          & .delete-link
+            opacity: 1
+            transition: all .3s ease
+        & .delete-link
+          position: absolute
+          right: 0
+          top: 0
+          left: 0
+          bottom: 0
+          margin: auto
+          cursor: pointer
+          width: 35px
+          height: 35px
+          padding: 5px
+          border-radius: 50%
+          background-color: $green
+          color: #fff
+          z-index: 20
+          text-align: center
+          font-size: 1.5rem
+          opacity: 0
+          transition: all .3s ease
+          & .fa
+            display: block
+.success
+  &_message
+    max-width: 420px
+  &_title
+    display: flex
+    justify-content: flex-start
+    align-self: center
+    margin-bottom: 35px
+    img
+      margin-right: 45px
+    h3
+      font-size: 24px
+      font-weight: 600
+      font-family: $titleFont
+      display: flex
+      justify-content: center
+      flex-direction: column
+    p
+      font-size: 18px
+      font-family: $futuraBook
+@import 'loader'

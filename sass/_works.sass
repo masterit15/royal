@@ -1,0 +1,164 @@
+.parent
+  width: 100%
+  display: grid
+  grid-template-columns: repeat(6, 1fr)
+  grid-template-rows: repeat(5, 1fr)
+  grid-column-gap: 20px
+  grid-row-gap: 20px
+  .grid_item
+    cursor: pointer
+    width: 100%
+    height: 100%
+    background-color: #333
+    border-radius: 10px
+    min-height: 100px
+    background-position: 50% 50%
+    background-size: cover
+    position: relative
+    &_media
+      cursor: pointer
+      width: 100%
+      height: 100%
+      background-color: #333
+      border-radius: 10px
+      min-height: 100px
+      background-position: 50% 50%
+      background-size: cover
+      position: relative
+    &_content
+      display: none
+    &.active
+      &:before
+        display: none
+        opacity: 1
+        transition: all .3s ease
+    &:hover
+      &:before
+        opacity: 1
+        transition: all .3s ease
+    &:before
+      content: ''
+      background: inherit
+      position: absolute
+      width: 100%
+      height: 100%
+      left: 0
+      top: 0
+      opacity: 0
+      filter: blur(30px)
+      border-radius: 10px
+      transform: translate(0px, 16px)
+      z-index: -9999
+      transition: all .3s ease
+    img
+      max-width: 100%
+      height: auto
+  
+  .grid_item:nth-child(1)
+    grid-area: 1 / 1 / 2 / 3
+    
+  .grid_item:nth-child(2)
+    grid-area: 1 / 3 / 4 / 5
+    
+  .grid_item:nth-child(3)
+    grid-area: 1 / 5 / 3 / 7
+    
+  .grid_item:nth-child(4)
+    grid-area: 2 / 1 / 4 / 3
+    
+  .grid_item:nth-child(5)
+    grid-area: 3 / 5 / 4 / 7
+    
+  .grid_item:nth-child(6)
+    grid-area: 4 / 1 / 6 / 2
+    
+  .grid_item:nth-child(7)
+    grid-area: 4 / 2 / 6 / 3
+    
+  .grid_item:nth-child(8)
+    grid-area: 4 / 3 / 5 / 5
+    
+  .grid_item:nth-child(9)
+    grid-area: 5 / 3 / 6 / 5
+    
+  .grid_item:nth-child(10)
+    grid-area: 4 / 5 / 6 / 7
+.work_content
+  position: fixed
+  bottom: 0
+  left: 0
+  padding: 40px
+  background-color: #fff
+  width: 100%
+  height: 100%
+  display: flex
+  justify-content: flex-start
+  transform: translateX(-100%)
+  z-index: 100
+  &_nav
+    position: absolute
+    width: 100%
+    height: 60px
+    top: 50%
+    left: 0
+    z-index: 100
+    & span
+      position: absolute
+      cursor: pointer
+      font-size: 4rem
+      text-shadow: 0 2px 5px rgba(#000, 0.5)
+      color: #fff
+      display: none
+      &:hover
+        color: #d7d7d7
+      &.show
+        display: block
+      &.left
+        left: 40px
+      &.right
+        right: 40px
+  &_left,&_right
+    position: absolute
+    top: 0
+    width: 50%
+    height: 100%
+    padding: 70px
+  &_left
+    left: 0
+    overflow-y: auto
+    .grid_item_content
+      opacity: 0
+      &_title
+        margin-bottom: 20px
+        font-size: 1.5rem
+        font-weight: 600
+        color: $titleFont
+  &_right
+    background-color:#f0f0f0
+    background-repeat: no-repeat
+    background-size: cover
+    right: 0
+    .grid_item_media
+      position: absolute
+      background-repeat: no-repeat
+      background-size: cover
+      width: 100%
+      height: 100%
+      left: 0
+      right: 0
+      top: 0
+      bottom: 0
+      margin: auto
+      opacity: 0
+      transform: translateX(-280px)
+  & .close
+    position: absolute
+    cursor: pointer
+    width: 50px
+    height: 50px
+    top: 70px
+    right: 70px
+    font-size: 2.5rem
+    text-shadow: 0 2px 5px rgba(#000, 0.5)
+    color: #fff
+    z-index: 999

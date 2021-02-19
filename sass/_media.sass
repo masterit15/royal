@@ -1,0 +1,89 @@
+/*==========  Desktop First Method  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px)
+  /**/
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px)
+  /**/
+  section
+    margin: 0!important
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px)
+  /**/
+  .section_nav
+    display: none
+  .footer
+    &_items
+      flex-direction: column
+      align-items: center
+    &_item
+      width: 100%
+      margin-bottom: 30px
+  .parent
+    display: flex
+    justify-content: center
+    flex-direction: column
+    padding: 0 15px
+  .section
+    &_title
+      padding: 0 20px
+      text-align: center
+      font-size: 20px
+      line-height: 32px
+    &_desc
+      width: 100%
+      text-align: center
+  #hero
+    min-height: 100vh
+    .header
+      margin-top: 15px
+    height: 100%
+    .ofer
+      height: 100%
+      &_text
+        h2
+          font-size: 24px
+      &_action
+        button
+          width: 100%
+
+        a.btn
+          display: none
+  .tabs_item
+    font-size: 14px
+  .partner_carousel
+    margin: 50px 0
+  #product_form
+    margin-bottom: 30px
+    justify-content: center
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px)
+  /**/
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px)
+  /**/
+/*==========  Mobile First Method  ==========*/
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px)
+  /**/
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px)
+  /**/
+/* Small Devices, Tablets */
+@media only screen and (min-width: 768px)
+  /**/
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px)
+  /**/
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px)
+  /**/
+  #hero
+    .video-hero
+      display: block
+  .decor_img
+    display: block;
+  
