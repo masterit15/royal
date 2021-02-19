@@ -374,7 +374,6 @@ $(function () {
         //         price = (0.80 * val) + design
         //         break;
         // }
-        console.log(price)
         TweenMax.to(priceMid, 1, { score: `${price}`, onUpdate: updateHandler });
 
     }
@@ -416,8 +415,8 @@ $(function () {
         return Math.ceil(val1/val2)*val2
     }
     function applicationForm(form){
-         var minQuantity = 300//минимальный тираж
-         var maxQuantity = 5000//максимальный тираж
+         var minQuantity = 1000//минимальный тираж
+         var maxQuantity = 9000//максимальный тираж
          var stepQuantity = 1000 // интервал тиража
          fileUpload = `<div class="form_row__photo-previews">
                             <p class="form_row_text">Подгрузите файлы собственного дизайна, один вайл не должен привышать <strong>2мб</strong>, допустимый форматы <strong>"png,jpg,tif,pdf,psd,ai,svg"</strong>!</p>
@@ -539,17 +538,13 @@ $(function () {
             
             $quantityArrowMinus.on('click', quantityMinus);
             $quantityArrowPlus.on('click', quantityPlus);
-            $('#product_form_edition_number').on('change', function(){
+            $('#product_form_edition_number').on('input', function(){
                 rangeValid()
             })
-            $('#product_form_edition_number').on('change', function(){
-                if($quantityNum.val() % stepQuantity){
-                    $(this).val(roundStep($quantityNum.val(), stepQuantity))
-                }
-            })
+            
             
             function quantityMinus() {
-                if ($quantityNum.val() >= productEdition) {
+                if ($quantityNum.val() >= minQuantity) {
                     $quantityNum.val(+$quantityNum.val() - stepQuantity);
                     if(rangeValid()){
                         $('#product_form_edition').slider("value", $quantityNum.val())
@@ -576,6 +571,11 @@ $(function () {
                     priceCange(productId, productPrice, productEdition);
                 }
             })
+            // $('#product_form_edition_number').on('change', function(){
+            //     if($quantityNum.val() % stepQuantity){
+            //         $(this).val(roundStep($quantityNum.val(), stepQuantity))
+            //     }
+            // })
         })();
         
         $('#product_form_mail_or_phone').on('input', function () {
