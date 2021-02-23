@@ -7,7 +7,7 @@ require( $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php');
   <div class="form_col_left">
     <div class="form_item">
       <div class="product_select">
-        <label for="product_form_select">Выбор продуции</label>
+        <label for="product_form_select">Выбор продуции:</label>
         <select class="select" name="product" id="product_form_select">
           <?
           $reviews = new WP_Query(
@@ -18,13 +18,13 @@ require( $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php');
           if ($reviews->have_posts()) {while ($reviews->have_posts()) {$reviews->the_post();
           $custom = get_post_custom($post->ID);
           ?>
-            <option data-price="<?=$custom['product_price'][0]?>" data-min-edition="<?=$custom['product_edition'][0]?>" value="<?php the_title();?>-<?=$post->ID?>"><?php the_title();?> - <?=$custom['product_price'][0]?> р.ш.</option>
+            <option data-id="<?=$post->ID?>" data-price="<?=$custom['product_price'][0]?>" data-min-edition="<?=$custom['product_edition'][0]?>" value="<?php the_title();?>-<?=$post->ID?>"><?php the_title();?> - <?=$custom['product_price'][0]?> р.ш.</option>
           <?}} else {echo 'Ничего не найдено';}wp_reset_postdata();?>
         </select>
       </div>
     </div>
     <div class="form_item">
-      <label for="edition">Тираж</label>
+      <label for="edition">Тираж:</label>
       <div class="range">
         <div class="range_input">
           <div id="product_form_edition" class="js-range"></div>
@@ -48,39 +48,39 @@ require( $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php');
   </div>
   <div class="form_col_right">
     <div class="form_item">
-      <label for="product_form_fname">Фамилия</label>
-      <input class="input" type="text" name="first_name" id="product_form_fname">
+      <label for="product_form_fname">Фамилия:*</label>
+      <input class="input" type="text" name="first_name" id="product_form_fname" required>
     </div>
     <div class="form_item">
-      <label for="product_form_name">Имя</label>
-      <input class="input" type="text" name="name" id="product_form_name">
+      <label for="product_form_name">Имя:*</label>
+      <input class="input" type="text" name="name" id="product_form_name" required>
     </div>
     <div class="form_item">
-      <label for="product_form_lname">Отчество</label>
+      <label for="product_form_lname">Отчество:</label>
       <input class="input" type="text" name="last_name" id="product_form_lname">
     </div>
     <div class="form_item">
-        <label for="product_form_mail_or_phone">Номер телефона или email:</label>
+        <label for="product_form_mail_or_phone">Номер телефона или email:*</label>
         <div class="mail_or_phone">
           <div class="mail_or_phone_val"></div>
-          <input class="input" type="text" name="contact" id="product_form_mail_or_phone">
+          <input class="input" type="text" name="contact" id="product_form_mail_or_phone" required>
         </div>
     </div>
     </div>
     <div class="form_bottom">        
-      <div class="price">
+      <button type="submit" class="price" disabled>
         <div class="price_left">
-          <img src="<?=get_template_directory_uri()?>/img/price_left.png">
+          <img src="<?=get_template_directory_uri()?>/img/price_left.svg">
         </div>
         <div class="price_mid">
           <div class="prices"><i class="fa fa-rub"></i><span>0</span></div>
           Стоимость
         </div>
         <div class="price_right">
-          <img src="<?=get_template_directory_uri()?>/img/price_right.png">
+          <img src="<?=get_template_directory_uri()?>/img/price_right.svg">
         </div>
         <input type="hidden" name="price">
-      </div>
+      </button>
       <span class="close">Отмена</span>
     </div>
     <input id="token" type="hidden" name="token">

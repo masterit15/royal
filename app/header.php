@@ -61,8 +61,7 @@
     </header>
     <div class="col-12 col-xl-6 p-xl-0">
       <div class="ofer">
-        
-          <!-- <div class="loader">
+          <div class="loader">
             <div class="dots">
               <div class="dot"></div>
               <div class="dot"></div>
@@ -79,7 +78,7 @@
                 </filter>
               </defs>
             </svg>
-          </div> -->
+          </div>
           <div class="forms"></div>
           <div class="ofer_text">
             <h1>Полиграфия высшего класса</h1>

@@ -74,6 +74,9 @@ function product_field() {
 	$custom = get_post_custom($post->ID);
 	?>
   <div class="product_fields">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.js"></script>
+
     <?if ($custom['product_price']) {?>
       <input class="product_fields_price" name="price" step="0.01" min="0" placeholder="Цена 0,00 р." value="<?=$custom['product_price'][0]?>">
     <?} else {?>
@@ -85,7 +88,9 @@ function product_field() {
     <?} else {?>
       <input class="product_fields_edition" name="edition" type="number" placeholder="Тираж">
     <?}?>
-
+		<script>
+			$('.product_fields_price').mask('000.000.000.000.000,00', {reverse: true});
+		</script>
   </div>
 <?
 }

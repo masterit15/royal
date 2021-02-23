@@ -2,17 +2,21 @@ $(function () {
     const tl = gsap.timeline()
     var priceMid = { score: 0 };
     var productId = 51;
+    var productSelected = '';
     var formFiles = [];
-    // цены на продукты
-    let visitPrice = '' // визитки
-    const labelsPrice = '' // этикетки
-    const postersPrice = '' // плакаты
-    const packagePrice = '' //упаковка
-    const bookletsPrice = '' // буклеты
-    const packageIsCardboardPrice = ''//упаковка из картона
     const sections = document.querySelectorAll('section')
     const windowHeight = $(window).height();
-
+    // кнопка вверх
+    $(window).on('scroll',function () {
+        if ($(this).scrollTop() != 0) {
+        $('#toTop').fadeIn();
+        } else {
+        $('#toTop').fadeOut();
+        }
+    });
+    $('#toTop').click(function () {
+        $('body,html').animate({ scrollTop: 0 }, 800);
+    });
     sections.forEach(section => {
         if(section.id != 'hero'){
             $('.menu').append(`<li><a href="#${section.id}" data-section="#${section.id}">${section.dataset.name}</a></li>`) 
@@ -38,12 +42,13 @@ $(function () {
 		});
 	});
     function animateScroll(el){
-        console.log($(el).offset().top + $(el).height()/2 - windowHeight/2)
+        //console.log($(el).offset().top + $(el).height()/2 - windowHeight/2)
         $('html, body').animate({
             scrollTop: $(el).offset().top + $(el).height()/2 - windowHeight/2 + 100
         }, 800, function(){
         });
     }
+    
     window.onload = function() {
         tl.to('.video-hero', { scale: 1, opacity: 1, duration: 2 })
         tl.to('.section_nav li', {opacity: 1, translateX: '0px', duration: .2, stagger: .1})
@@ -348,35 +353,40 @@ $(function () {
         }
         ;
     }
+    // подгрузка формы при клике на продукт
+    $('.slider_item').on('click', function(){
+        productSelected = $(this).data('select')
+        if($('#product_form').length > 0){
+            $('#product_form_select').select2('val', [productSelected])
+            productOption = $('option:selected', $('#product_form_select'));
+            productId = Number($(productOption).data('id'))
+            productPrice = Number($(productOption).data('price'))
+            productEdition = Number($(productOption).data('min-edition'))
+            $('#product_form_edition_number').val(productEdition);
+            $('#product_form_edition').slider("value", productEdition);
+            $('body,html').animate({ scrollTop: 0 }, 500)
+            priceCange(productId, productPrice, productEdition);
+        }else{
+            $('.ofer #product_form').remove()
+            $('.ofer_text').show()
+            $('#price_form_get').trigger('click')
+            productSelected = $(this).data('select')
+            $('body,html').animate({ scrollTop: 0 }, 500)
+        }
+        
+    })
     // функция обновления стоимости
     function priceCange(productId, productPrice, productEdition, design = 500) {
         let price = (productPrice * productEdition) + design
-        // switch (productId) {
-        //     case 51: // Рекламные буклеты
-        //         price = (productPrice * productEdition) + design
-        //         break;
-        //     case 49: // Визитки
-        //         price = (0.80 * val) + design
-        //         break;
-        //     case 47: // Упаковка из картона
-        //         price = (1.50 * val) + design
-        //         break;
-        //     case 45: // Этикетки
-        //         price = (3.5 * val) + design
-        //         break;
-        //     case 37: // Плакаты
-        //         price = (5.0 * val) + design
-        //         break;
-        //     case 25: // Упаковка
-        //         price = (35.0 * val) + design
-        //         break;
-        //     default: // Визитки
-        //         price = (0.80 * val) + design
-        //         break;
-        // }
-        console.log(price)
-        TweenMax.to(priceMid, 1, { score: `${price}`, onUpdate: updateHandler });
-
+        if(productId == 51 || productId == 49){
+            $('.price_mid').html(`<div class="price_mid">
+                                        <div class="prices"><i class="fa fa-rub"></i><span>270,500</span></div>
+                                        Стоимость
+                                </div>`)
+            TweenMax.to(priceMid, 1, { score: `${price}`, onUpdate: updateHandler });
+        }else{
+            $('.price_mid').html(`<div class="price_mid"><h3>Отправить</h3></div>`)
+        }
     }
     // функция анимирования стоимости
     function updateHandler() {
@@ -394,7 +404,7 @@ $(function () {
             url: $(this).data('form'),
             type: 'GET',
             beforeSend: function () {
-                $('.loader').fadeIn(200)
+                $('.loader').fadeIn(100)
             },
             complete: function () {
             },
@@ -402,7 +412,7 @@ $(function () {
                 setTimeout(()=>{
                     applicationForm(res)
                 }, 200)
-                $('.loader').fadeOut(200)
+                $('.loader').fadeOut(300)
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 mainToast(time = 5000, 'error', "Произошла ошибка отправки, попробуйте еще раз.", text = '')
@@ -450,12 +460,21 @@ $(function () {
         let productPrice = Number($(productOption).data('price'))
         let productEdition = Number($(productOption).data('min-edition'))//минимальный тираж
         // функция обработки выбора продукта
+        if(productSelected != ''){
+            $('#product_form_select').select2('val', [productSelected])
+            productOption = $('option:selected', $('#product_form_select'));
+            productPrice = Number($(productOption).data('price'))
+            productEdition = Number($(productOption).data('min-edition'))
+            priceCange(productId, productPrice, productEdition);
+        }
         $('#product_form_select').on("select2:select", function (e) {
             let id = e.params.data.id.split('-')[1]
             productId = Number(id)
             productOption = $('option:selected', this);
             productPrice = $(productOption).data('price')
             productEdition = $(productOption).data('min-edition')//минимальный тираж
+            $('#product_form_edition_number').val(productEdition);
+            $('#product_form_edition').slider("value", productEdition);
             $('.product_params').remove()
             // если выбраны этикетки
             if(productId == 45){
@@ -495,7 +514,7 @@ $(function () {
                 `)
                 $('#product_form_visit_param').on('change', function () {
                     if ($(this).is(':checked')) {
-                        priceCange(productId, productPrice, productEdition, 500);
+                        priceCange(productId, 2.50, productEdition);
                     } else {
                         priceCange(productId, productPrice, productEdition);
                     }
@@ -519,8 +538,8 @@ $(function () {
         $('#product_form_edition').slider({
             range: "min",
             max: 10000,
-            min: productEdition,
-            step: productEdition,
+            min: stepQuantity,
+            step: stepQuantity,
             value: productEdition,
             slide: function (e, ui) {
                 productEdition = ui.value
@@ -530,7 +549,7 @@ $(function () {
             }
         });
         $('#product_form_edition_number').val(productEdition);
-        
+        $('#product_form_edition').slider("value", productEdition);
         // функция обработки клика по стрелкам поля тираж
         (function quantityProducts() { 
             let $quantityArrowMinus = $(".arrow-minus");
@@ -572,11 +591,11 @@ $(function () {
                     priceCange(productId, productPrice, productEdition);
                 }
             })
-            // $('#product_form_edition_number').on('change', function(){
-            //     if($quantityNum.val() % stepQuantity){
-            //         $(this).val(roundStep($quantityNum.val(), stepQuantity))
-            //     }
-            // })
+            $('#product_form_edition_number').on('change', function(){
+                if($quantityNum.val() % stepQuantity){
+                    $(this).val(roundStep($quantityNum.val(), stepQuantity))
+                }
+            })
         })();
         
         $('#product_form_mail_or_phone').on('input', function () {

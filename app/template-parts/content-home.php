@@ -57,7 +57,7 @@ $partnerCat = get_term( 9 );
                 if ($reviews->have_posts()) {while ($reviews->have_posts()) {$reviews->the_post();
                 $custom = get_post_custom($post->ID);
                 ?>
-                <div class="slider_item" style="background-image: url('<?=get_the_post_thumbnail_url($post->ID, 'large')?>')">
+                <div class="slider_item" data-select="<?php the_title();?>-<?=$post->ID?>" style="background-image: url('<?=get_the_post_thumbnail_url($post->ID, 'large')?>')">
                   <div class="slider_item_imgwrap">
                     <div class="slider_item_img" style="background-image: url('<?=get_the_post_thumbnail_url($post->ID, 'large')?>')"></div>
                   </div>
