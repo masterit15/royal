@@ -626,6 +626,17 @@ $(function () {
                 document.getElementById('token').value = token
             });
         });
+        $('input[required]').on('change', function(){
+            let firstName = $('#product_form_fname').val()
+            let name = $('#product_form_name').val()
+            let mailOrphone = $('#product_form_mail_or_phone').val()
+            if(firstName.length > 0 && name.length > 0 && validateEmailOrPhone(mailOrphone)){
+                $('.price').removeAttr('disabled')
+            }else{
+                $('.price').attr('disabled', '')
+            }
+        })
+        
         $('.price').on('click', function (e) {
             e.preventDefault()
             $('input[name="price"]').val($('.prices span').text())
