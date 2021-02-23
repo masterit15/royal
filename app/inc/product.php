@@ -78,9 +78,9 @@ function product_field() {
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.js"></script>
 
     <?if ($custom['product_price']) {?>
-      <input class="product_fields_price" name="price" step="0.01" min="0" placeholder="Цена 0,00 р." value="<?=$custom['product_price'][0]?>">
+      <input class="product_fields_price" name="price" step="0.01" min="0" placeholder="Цена 0.00 р." value="<?=$custom['product_price'][0]?>">
     <?} else {?>
-      <input class="product_fields_price" name="price" type="number" step="0.01" min="0" placeholder="Цена 0,00 р.">
+      <input class="product_fields_price" name="price" type="number" step="0.01" min="0" placeholder="Цена 0.00 р.">
     <?}?>
 
     <?if ($custom['product_edition']) {?>
@@ -89,7 +89,7 @@ function product_field() {
       <input class="product_fields_edition" name="edition" type="number" placeholder="Тираж">
     <?}?>
 		<script>
-			$('.product_fields_price').mask('000.000.000.000.000,00', {reverse: true});
+			$('.product_fields_price').mask('000.000.000.000.000.00', {reverse: true});
 		</script>
   </div>
 <?

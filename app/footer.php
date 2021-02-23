@@ -19,7 +19,7 @@
 		<div class="cophyright">RoyalPrint © 2020. Все права защищены </div>
 	</footer>
 	<div id="toTop">
-		<i class="fa fa-rocket"></i>
+		<i class="fas fa-rocket"></i>
 		<span class="stars">
 			<span class="star star-1"></span>
 			<span class="star star-2"></span>

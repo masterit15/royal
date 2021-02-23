@@ -7,7 +7,13 @@ $(function () {
     const sections = document.querySelectorAll('section')
     const windowHeight = $(window).height();
     // кнопка вверх
+    let hero = $('#hero').outerHeight(true)
+    let services = $('#services').outerHeight(true)
+    console.log(hero)
+    console.log(services)
     $(window).on('scroll',function () {
+        
+        
         if ($(this).scrollTop() != 0) {
         $('#toTop').fadeIn();
         } else {
@@ -342,11 +348,11 @@ $(function () {
     function validateEmailOrPhone(val) {
         var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
         if (expr.test(val)) {
-            return '<span class="fa">@</span>'
+            return '<i class="fas fa-at"></i>'
         } else {
             expr = /[2-9]{1}\d{2}/;
             if (expr.test(val)) {
-                return '<i class="fa fa-phone"></i>'
+                return '<i class="fas fa-phone"></i>'
             } else {
                 return false
             }
