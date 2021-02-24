@@ -98,9 +98,9 @@
       <div class="ofer_soc">
         Будем рады видеть Вас в наших социальных сетях:
         <ul>
-          <li><a href=""><i class="fa fa-vk"></i></a></li>
-          <li><a href=""><i class="fa fa-instagram"></i></a></li>
-          <li><a href=""><i class="fa fa-facebook-official"></i></a></li>
+          <li><a href=""><i class="fab fa-vk"></i></a></li>
+          <li><a href=""><i class="fab fa-instagram"></i></a></li>
+          <li><a href=""><i class="fab fa-facebook-square"></i></a></li>
         </ul>
       </div>
   <div class="video-hero">

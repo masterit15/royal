@@ -18,7 +18,7 @@ require( $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php');
           if ($reviews->have_posts()) {while ($reviews->have_posts()) {$reviews->the_post();
           $custom = get_post_custom($post->ID);
           ?>
-            <option data-id="<?=$post->ID?>" data-price="<?=$custom['product_price'][0]?>" data-min-edition="<?=$custom['product_edition'][0]?>" value="<?php the_title();?>-<?=$post->ID?>"><?php the_title();?> - <?=$custom['product_price'][0]?> р.ш.</option>
+            <option data-id="<?=$post->ID?>" data-price="<?=$custom['product_price'][0]?>" data-min-edition="<?=$custom['product_edition'][0]?>" value="<?php the_title();?>-<?=$post->ID?>"><?php the_title();?></option>
           <?}} else {echo 'Ничего не найдено';}wp_reset_postdata();?>
         </select>
       </div>
@@ -31,8 +31,8 @@ require( $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php');
         </div>
         <div class="range_value">
           <div class="arrow"> 
-            <span class="arrow-plus"><i class="fa fa-angle-up"></i></span>
-            <span class="arrow-minus"><i class="fa fa-angle-down"></i></span>
+            <span class="arrow-plus"><i class="fas fa-chevron-up"></i></span>
+            <span class="arrow-minus"><i class="fas fa-chevron-down"></i></span>
           </div>
           <input id="product_form_edition_number" name="edition" class="value" type="text" value="2000"/>
         </div>

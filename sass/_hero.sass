@@ -168,6 +168,7 @@
       flex-direction: column
       color: rgba(#4A4A4A, 0.5)
       margin-top: 191px
+      z-index: 20
       ul
         width: 100px
         padding: 0
@@ -177,8 +178,10 @@
         list-style: none
         li
           a
-            color: rgba(74, 74, 74, 0.8)
+            color: rgba(#4A4A4A, 0.5)
             font-size: 18px
+            &:hover
+              color: rgba(#4A4A4A, 0.8)
   .mouse
     width: 100%
     height: auto
@@ -188,7 +191,7 @@
     align-items: center
     transform: translateY(-40px)
     & .fa
-      color: rgba(74, 74, 74, 0.8)
+      color: rgba(#4A4A4A, 0.32)
       animation: mouse 1.3s linear 1s infinite
     & span
       display: block
@@ -196,7 +199,7 @@
       width: 24px
       height: 35px
       border-radius: 50px
-      border: 2px solid rgba(74, 74, 74, 0.8)
+      border: 2px solid rgba(#4A4A4A, 0.32)
       animation: mouse 1.3s linear 1s infinite
       &:before
         content: ''
@@ -208,7 +211,7 @@
         top: 6px
         margin: auto
         border-radius: 10px
-        background-color: rgba(74, 74, 74, 0.8)
+        background-color: rgba(#4A4A4A, 0.32)
 @keyframes mouse
   0%
     transform: translateY(0px)

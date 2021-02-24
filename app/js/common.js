@@ -9,18 +9,14 @@ $(function () {
     // кнопка вверх
     let hero = $('#hero').outerHeight(true)
     let services = $('#services').outerHeight(true)
-    console.log(hero)
-    console.log(services)
     $(window).on('scroll',function () {
-        
-        
-        if ($(this).scrollTop() != 0) {
+        if ($(this).scrollTop() >= hero + services) {
         $('#toTop').fadeIn();
         } else {
         $('#toTop').fadeOut();
         }
     });
-    $('#toTop').click(function () {
+    $('#toTop').on('click',function () {
         $('body,html').animate({ scrollTop: 0 }, 800);
     });
     sections.forEach(section => {
