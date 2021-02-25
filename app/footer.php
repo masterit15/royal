@@ -15,6 +15,31 @@
 	<footer class="footer">
 		<div class="footer_items">
 			<?php dynamic_sidebar( 'footer' ); ?>
+			<div class="footer_item widget_text">
+			<h3 class="footer_item_title">Мы в социальныхых сетях:</h3>
+				<div class="ofer_soc">
+				<?
+					wp_nav_menu( [
+						'theme_location'  => 'socmenu',
+						'menu'            => '', 
+						'container'       => '', 
+						'container_class' => '', 
+						'container_id'    => '',
+						'menu_class'      => 'socicon', 
+						'menu_id'         => '',
+						'echo'            => true,
+						'fallback_cb'     => 'wp_page_menu',
+						'before'          => '',
+						'after'           => '',
+						'link_before'     => '',
+						'link_after'      => '',
+						'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+						'depth'           => 0,
+						'walker'          => '',
+					] );
+					?>
+					</div>
+				</div>
 		</div>
 		<div class="cophyright">RoyalPrint © 2020. Все права защищены </div>
 	</footer>

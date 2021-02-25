@@ -137,6 +137,10 @@ function royalprint_content_width() {
 }
 add_action('after_setup_theme', 'royalprint_content_width', 0);
 
+add_action( 'after_setup_theme', 'theme_register_socmenu' );
+function theme_register_socmenu() {
+	register_nav_menu( 'socmenu', 'Мы в соцсетях' );
+}
 /**
  * Register widget area.
  *

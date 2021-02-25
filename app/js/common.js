@@ -382,7 +382,7 @@ $(function () {
         let price = (productPrice * productEdition) + design
         if(productId == 51 || productId == 49){
             $('.price_mid').html(`<div class="price_mid">
-                                        <div class="prices"><i class="fa fa-rub"></i><span>270,500</span></div>
+                                        <div class="prices"><i class="fas fa-ruble-sign"></i> <span></span></div>
                                         Стоимость
                                 </div>`)
             TweenMax.to(priceMid, 1, { score: `${price}`, onUpdate: updateHandler });
@@ -489,7 +489,7 @@ $(function () {
                 //         <option value="3">Офсетная бумага</option>
                 //         </select>
                 //         <span class="question">
-                //             <i class="fa fa-question-circle-o"></i>
+                //             <i class="far fa-question-circle"></i>
                 //             <span class="question_text">Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Большой свой, переулка вопрос она рукопись не инициал что. Города которое буквоград по всей всемогущая текст деревни свое до заголовок страну.</span>
                 //         </span>
                 //     </div>
@@ -509,7 +509,7 @@ $(function () {
                             </label>
                         </div>
                         <span class="question">
-                            <i class="fa fa-question-circle-o"></i>
+                            <i class="far fa-question-circle"></i>
                             <span class="question_text">Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Большой свой, переулка вопрос она рукопись не инициал что. Города которое буквоград по всей всемогущая текст деревни свое до заголовок страну.</span>
                         </span>
                     </div>

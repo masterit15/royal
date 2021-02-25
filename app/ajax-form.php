@@ -49,11 +49,11 @@ require( $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php');
   <div class="form_col_right">
     <div class="form_item">
       <label for="product_form_fname">Фамилия:*</label>
-      <input class="input" type="text" name="first_name" id="product_form_fname" required>
+      <input class="input" type="text" name="first_name" id="product_form_fname" required autocomplete="off">
     </div>
     <div class="form_item">
       <label for="product_form_name">Имя:*</label>
-      <input class="input" type="text" name="name" id="product_form_name" required>
+      <input class="input" type="text" name="name" id="product_form_name" required autocomplete="off">
     </div>
     <div class="form_item">
       <label for="product_form_lname">Отчество:</label>
@@ -63,7 +63,7 @@ require( $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php');
         <label for="product_form_mail_or_phone">Номер телефона или email:*</label>
         <div class="mail_or_phone">
           <div class="mail_or_phone_val"></div>
-          <input class="input" type="text" name="contact" id="product_form_mail_or_phone" required>
+          <input class="input" type="text" name="contact" id="product_form_mail_or_phone" required autocomplete="off">
         </div>
     </div>
     </div>
@@ -73,7 +73,7 @@ require( $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php');
           <img src="<?=get_template_directory_uri()?>/img/price_left.svg">
         </div>
         <div class="price_mid">
-          <div class="prices"><i class="fa fa-rub"></i><span>0</span></div>
+          <div class="prices"><i class="fas fa-ruble-sign"></i> <span>0</span></div>
           Стоимость
         </div>
         <div class="price_right">

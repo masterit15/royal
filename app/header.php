@@ -97,11 +97,26 @@
       
       <div class="ofer_soc">
         Будем рады видеть Вас в наших социальных сетях:
-        <ul>
-          <li><a href=""><i class="fab fa-vk"></i></a></li>
-          <li><a href=""><i class="fab fa-instagram"></i></a></li>
-          <li><a href=""><i class="fab fa-facebook-square"></i></a></li>
-        </ul>
+        <?
+        wp_nav_menu( [
+          'theme_location'  => 'socmenu',
+          'menu'            => '', 
+          'container'       => '', 
+          'container_class' => '', 
+          'container_id'    => '',
+          'menu_class'      => 'socicon', 
+          'menu_id'         => '',
+          'echo'            => true,
+          'fallback_cb'     => 'wp_page_menu',
+          'before'          => '',
+          'after'           => '',
+          'link_before'     => '',
+          'link_after'      => '',
+          'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+          'depth'           => 0,
+          'walker'          => '',
+        ] );
+        ?>
       </div>
   <div class="video-hero">
     <video class="video" loop="loop" autoplay="" muted="">
