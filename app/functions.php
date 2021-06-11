@@ -158,6 +158,39 @@ function royalprint_widgets_init() {
 			'after_title' => '</h2>',
 		)
 	);
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Контакты-вверху', 'royalprint' ),
+			'id'            => 'contact-top',
+			'description'   => esc_html__( 'Добавить виджет.', 'royalprint' ),
+			'before_widget' => '<div class="contact_top_item">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h3 class="contact_top_title">',
+			'after_title'   => '</h3>',
+		)
+	);
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Контакты-внизу', 'royalprint' ),
+			'id'            => 'contact-bottom',
+			'description'   => esc_html__( 'Добавить виджет.', 'royalprint' ),
+			'before_widget' => '<div class="contact_top_item">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h3 class="contact_top_title">',
+			'after_title'   => '</h3>',
+		)
+	);
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Контакты-адрес', 'royalprint' ),
+			'id'            => 'contact-address',
+			'description'   => esc_html__( 'Добавить виджет.', 'royalprint' ),
+			'before_widget' => '<div class="contact_top_item">',
+			'after_widget'  => '</div>',
+			'before_title'  => '',
+			'after_title'   => '',
+		)
+	);
 }
 add_action('widgets_init', 'royalprint_widgets_init');
 

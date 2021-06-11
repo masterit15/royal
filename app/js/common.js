@@ -380,8 +380,8 @@ $(function () {
     // функция обновления стоимости
     function priceCange(productId, productPrice, productEdition) {
         let design = $('#product_form_design').is(':checked') ? Number($('#product_form_design').data('price')) : 0
-        productPrice = $('#product_form_visit_param').is(':checked') ? Number($('#product_form_visit_param').data('price')) : productPrice
-        console.log(design)
+        productPrice = Number(productPrice)
+        $('.form_range')
         if (design > 0) {
             $('.fileuploader').html('')
         } else {
@@ -389,7 +389,7 @@ $(function () {
             uploaderImg('.add_photo-item', '#js-photo-upload', '#uploadImagesList', false, false);
         }
         let price = (productPrice * productEdition) + design
-        if(productId == 51 || productId == 49){
+        if(productPrice && productPrice > 0){
             $('.price_mid').html(`<div class="price_mid">
                                         <div class="prices"><i class="fas fa-ruble-sign"></i> <span></span></div>
                                         Стоимость
@@ -482,6 +482,7 @@ $(function () {
             embossingPrice = $(productOption).data('embossing-price')
             designPrice = $(productOption).data('design-price')
             priceCange(productId, productPrice, productEdition);
+            $('.range')
         }
         $('#product_form_select').on("select2:select", function (e) {
             let id = e.params.data.id.split('-')[1]
@@ -494,6 +495,7 @@ $(function () {
             $('#product_form_edition_number').val(productEdition);
             $('#product_form_edition').slider("value", productEdition);
             $('.product_params').remove()
+            
             // если выбраны этикетки
             if(productId == 45){
                 // $('.product_select').after(`
@@ -516,21 +518,20 @@ $(function () {
                 // })
                 // если выбраны визитки
             }else if(productId == 49){
-                $('.product_select').after(`
-                    <div class="product_params">
-                        <div class="form_item">
-                            <label class="checkbox" for="product_form_visit_param">
-                            <input type="checkbox" name="visit_param" id="product_form_visit_param" data-price="${embossingPrice}">
-                            <span>Бумага с теснением</span>
-                            </label>
-                        </div>
-                        <span class="question">
-                            <i class="far fa-question-circle"></i>
-                            <span class="question_text">Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Большой свой, переулка вопрос она рукопись не инициал что. Города которое буквоград по всей всемогущая текст деревни свое до заголовок страну.</span>
-                        </span>
-                    </div>
-                `)
-                console.log(designPrice)
+                // $('.product_select').after(`
+                //     <div class="product_params">
+                //         <div class="form_item">
+                //             <label class="checkbox" for="product_form_visit_param">
+                //             <input type="checkbox" name="visit_param" id="product_form_visit_param" data-price="${embossingPrice}">
+                //             <span>Бумага с теснением</span>
+                //             </label>
+                //         </div>
+                //         <span class="question">
+                //             <i class="far fa-question-circle"></i>
+                //             <span class="question_text">Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Большой свой, переулка вопрос она рукопись не инициал что. Города которое буквоград по всей всемогущая текст деревни свое до заголовок страну.</span>
+                //         </span>
+                //     </div>
+                // `)
                 $('#product_form_design').data('price', designPrice)
                 $('#product_form_visit_param').on('change', function () {
                         priceCange(productId, productPrice, productEdition);

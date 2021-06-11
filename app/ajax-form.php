@@ -33,7 +33,7 @@ require( $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php');
         </select>
       </div>
     </div>
-    <div class="form_item">
+    <div class="form_item form_range">
       <label for="edition">Тираж:</label>
       <div class="range">
         <div class="range_input">

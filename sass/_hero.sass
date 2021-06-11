@@ -5,6 +5,22 @@
   display: flex
   justify-content: space-between
   flex-direction: column
+  .top
+    &_menu
+      display: flex
+      justify-content: center
+      flex-direction: row
+      list-style: none
+      gap: 0 50px
+      width: 462px
+      margin: 15px auto
+      li
+        a
+          color: #4A4A4A
+          font-family: $titleFont
+          text-decoration: none
+          font-weight: 600
+          font-size: 18px
   .footer_item_title
     display: none
   .video-hero
@@ -176,9 +192,11 @@
         padding: 0
         margin: 20px 0 0 0
         display: flex
-        justify-content: space-between
+        justify-content: flex-start
         list-style: none
+        gap: 0 15px
         li
+          
           a
             color: rgba(#4A4A4A, 0.5)
             font-size: 18px

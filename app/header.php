@@ -37,7 +37,16 @@
 						?>
 					</a>
           </div>
-          <div class="col-6 col-xl-2 offset-xl-8 p-xl-0">
+          <div class="col-6 col-xl-6">
+            <ul class="top_menu menu"></ul>
+          </div>
+          <div class="col-6 col-xl-4">
+          <div class="contact_top">
+            <?php dynamic_sidebar( 'Контакты-вверху' ); ?>
+          </div>
+            
+          </div>
+          <div class="col-6 col-xl-2 offset-xl-8 p-xl-0 d-sm-none">
             <div class="mmenu_btn" @click="toggleMenu" ref="menu">
               <div class="hamburger">
                 <span></span>
@@ -45,14 +54,6 @@
                 <span></span>
               </div>
 							<!-- <ul class="menu"></ul> -->
-							<?php
-								// wp_nav_menu(
-								// 	array(
-								// 		'theme_location' => 'menu-1',
-								// 		'menu_id'        => 'primary-menu',
-								// 	)
-								// );
-              ?>
               <ul class="menu"></ul>
             </div>
           </div>
@@ -81,6 +82,7 @@
           </div>
           <div class="forms"></div>
           <div class="ofer_text">
+            <?php dynamic_sidebar( 'Контакты-адрес' ); ?>
             <h1>Полиграфия высшего класса</h1>
             <p>
             Оказываем весь комплекс полиграфических услуг:<br> каталоги,
