@@ -378,7 +378,16 @@ $(function () {
         
     })
     // функция обновления стоимости
-    function priceCange(productId, productPrice, productEdition, design = 500) {
+    function priceCange(productId, productPrice, productEdition) {
+        let design = $('#product_form_design').is(':checked') ? Number($('#product_form_design').data('price')) : 0
+        productPrice = $('#product_form_visit_param').is(':checked') ? Number($('#product_form_visit_param').data('price')) : productPrice
+        console.log(design)
+        if (design > 0) {
+            $('.fileuploader').html('')
+        } else {
+            $('.fileuploader').html(fileUpload)
+            uploaderImg('.add_photo-item', '#js-photo-upload', '#uploadImagesList', false, false);
+        }
         let price = (productPrice * productEdition) + design
         if(productId == 51 || productId == 49){
             $('.price_mid').html(`<div class="price_mid">
@@ -461,12 +470,17 @@ $(function () {
         let productOption = $('option:selected', $('#product_form_select'));
         let productPrice = Number($(productOption).data('price'))
         let productEdition = Number($(productOption).data('min-edition'))//минимальный тираж
+        let embossingPrice = $(productOption).data('embossing-price')
+        let designPrice = $(productOption).data('design-price')
+        
         // функция обработки выбора продукта
         if(productSelected != ''){
             $('#product_form_select').select2('val', [productSelected])
             productOption = $('option:selected', $('#product_form_select'));
             productPrice = Number($(productOption).data('price'))
             productEdition = Number($(productOption).data('min-edition'))
+            embossingPrice = $(productOption).data('embossing-price')
+            designPrice = $(productOption).data('design-price')
             priceCange(productId, productPrice, productEdition);
         }
         $('#product_form_select').on("select2:select", function (e) {
@@ -475,6 +489,8 @@ $(function () {
             productOption = $('option:selected', this);
             productPrice = $(productOption).data('price')
             productEdition = $(productOption).data('min-edition')//минимальный тираж
+            embossingPrice = $(productOption).data('embossing-price')
+            designPrice = $(productOption).data('design-price')
             $('#product_form_edition_number').val(productEdition);
             $('#product_form_edition').slider("value", productEdition);
             $('.product_params').remove()
@@ -504,7 +520,7 @@ $(function () {
                     <div class="product_params">
                         <div class="form_item">
                             <label class="checkbox" for="product_form_visit_param">
-                            <input type="checkbox" name="visit_param" id="product_form_visit_param">
+                            <input type="checkbox" name="visit_param" id="product_form_visit_param" data-price="${embossingPrice}">
                             <span>Бумага с теснением</span>
                             </label>
                         </div>
@@ -514,13 +530,10 @@ $(function () {
                         </span>
                     </div>
                 `)
+                console.log(designPrice)
+                $('#product_form_design').data('price', designPrice)
                 $('#product_form_visit_param').on('change', function () {
-                    if ($(this).is(':checked')) {
-                        priceCange(productId, 2.50, productEdition);
-                    } else {
                         priceCange(productId, productPrice, productEdition);
-                    }
-        
                 })
             }
             priceCange(productId, productPrice, productEdition);
@@ -613,15 +626,9 @@ $(function () {
             $('.ofer #product_form').remove()
             $('.ofer_text').show()
         });
+        $('#product_form_design').data('price', designPrice)
         $('#product_form_design').on('change', function () {
-            if ($(this).is(':checked')) {
-                $('.fileuploader').html('')
-                priceCange(productId, productPrice, productEdition)
-            } else {
-                priceCange(productId, productPrice, productEdition, 0)
-                $('.fileuploader').html(fileUpload)
-                uploaderImg('.add_photo-item', '#js-photo-upload', '#uploadImagesList', false, false);
-            }
+            priceCange(productId, productPrice, productEdition)
         })
         grecaptcha.ready(function() {
             grecaptcha.execute('6Ld-_vkZAAAAAKBfA3ZcdBimYvqFjpV2jLSYoiZ6', {action: 'homepage'}).then(function(token) {

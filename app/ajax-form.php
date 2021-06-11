@@ -3,6 +3,16 @@
 define('WP_USE_THEMES', false);
 require( $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php');
 ?>
+ <?
+  $reviews = new WP_Query(
+  array(
+  'post_type' => 'product',
+  'post_status' => 'publish',
+  ));
+  if ($reviews->have_posts()) {while ($reviews->have_posts()) {$reviews->the_post();
+  $custom = get_post_custom($post->ID);
+  // PR($custom);
+  }} else {echo 'Ничего не найдено';}wp_reset_postdata();?>
 <form id="product_form" action="<?=get_template_directory_uri()?>/handler.php" method="post" enctype="multipart/form-data">
   <div class="form_col_left">
     <div class="form_item">
@@ -18,7 +28,7 @@ require( $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php');
           if ($reviews->have_posts()) {while ($reviews->have_posts()) {$reviews->the_post();
           $custom = get_post_custom($post->ID);
           ?>
-            <option data-id="<?=$post->ID?>" data-price="<?=$custom['product_price'][0]?>" data-min-edition="<?=$custom['product_edition'][0]?>" value="<?php the_title();?>-<?=$post->ID?>"><?php the_title();?></option>
+            <option data-id="<?=$post->ID?>" data-price="<?=$custom['product_price'][0]?>" data-min-edition="<?=$custom['product_edition'][0]?>" data-design-price="<?echo isset($custom['product_design']) ? $custom['product_design'][0] : 0?>" data-embossing-price="<?echo isset($custom['product_embossing_price']) ? $custom['product_embossing_price'][0] : 0?>" value="<?php the_title();?>-<?=$post->ID?>"><?php the_title();?></option>
           <?}} else {echo 'Ничего не найдено';}wp_reset_postdata();?>
         </select>
       </div>
@@ -40,7 +50,7 @@ require( $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php');
     </div>
     <div class="form_item">
       <label class="checkbox" for="product_form_design">
-        <input type="checkbox" name="design" id="product_form_design" checked>
+        <input type="checkbox" name="design" id="product_form_design" checked data-price="0">
         <span>Разработка дизайна</span>
       </label>
       <div class="fileuploader"></div>

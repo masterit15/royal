@@ -89,7 +89,8 @@
             </p>
             <div class="ofer_action">
               <button type="button" id="price_form_get" data-form="<?=get_template_directory_uri()?>/ajax-form.php" class="btn btn-secondary">Заказать</button>
-              <a href="#services" class="btn btn-outline-secondary" >Подробнее</a>
+              <!-- <a href="te" class="btn btn-outline-secondary" >Подробнее</a> -->
+              <a href="tel:+79280704011" class="btn btn-outline-secondary">Позвонить</a>
             </div>
           </div>
         </div>

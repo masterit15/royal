@@ -77,16 +77,29 @@ function product_field() {
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.js"></script>
 
-    <?if ($custom['product_price']) {?>
+    <?if (isset($custom['product_price'])) {?>
       <input class="product_fields_price" name="price" step="0.01" min="0" placeholder="Цена 0.00 р." value="<?=$custom['product_price'][0]?>">
     <?} else {?>
       <input class="product_fields_price" name="price" type="number" step="0.01" min="0" placeholder="Цена 0.00 р.">
     <?}?>
 
-    <?if ($custom['product_edition']) {?>
+    <?if (isset($custom['product_edition'])) {?>
       <input class="product_fields_edition" name="edition" type="number" value="<?=$custom['product_edition'][0]?>" placeholder="Тираж">
     <?} else {?>
       <input class="product_fields_edition" name="edition" type="number" placeholder="Тираж">
+    <?}?>
+
+		<?
+		if (isset($custom['product_embossing_price'])) {?>
+      <input class="product_fields_embossing-price product_fields_price" name="embossingprice" step="0.01" min="0" value="<?=$custom['product_embossing_price'][0]?>" placeholder="Цена с тиснением">
+    <?} else {?>
+      <input class="product_fields_embossing-price product_fields_price" name="embossingprice" step="0.01" min="0" placeholder="Цена с тиснением">
+    <?}?>
+		<?
+		if (isset($custom['product_design'])) {?>
+      <input class="product_fields_price" name="design" step="0.01" min="0" value="<?=$custom['product_design'][0]?>" placeholder="Цена дизайна">
+    <?} else {?>
+      <input class="product_fields_price" name="design" step="0.01" min="0" placeholder="Цена дизайна">
     <?}?>
 		<script>
 			$('.product_fields_price').mask('000.000.000.000.000.00', {reverse: true});
@@ -100,7 +113,9 @@ function save_product_field() {
 	if ($post) {
 		if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {return $post->ID;}
 		update_post_meta($post->ID, "product_price", $_POST["price"]);
+		update_post_meta($post->ID, "product_design", $_POST["design"]);
 		update_post_meta($post->ID, "product_edition", $_POST["edition"]);
+		update_post_meta($post->ID, "product_embossing_price", $_POST["embossingprice"]);
 	}
 }
 // Добавляем js  для редактирования полей продукта
