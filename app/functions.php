@@ -217,6 +217,7 @@ function royalprint_scripts() {
 
 	wp_enqueue_script('libs', get_template_directory_uri() . '/js/libs.js', array(), _S_VERSION, true);
 	wp_enqueue_script('mainjs', get_template_directory_uri() . '/js/common.js', array(), _S_VERSION, true);
+	wp_enqueue_script('pricejs', get_template_directory_uri() . '/libs/calculator/price.js', array(), _S_VERSION, true);
 
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {

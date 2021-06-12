@@ -9,7 +9,7 @@ var gulp         = require('gulp'),
 
 gulp.task('browser-sync', function() {
 	browserSync.init({
-		proxy: "http://royal.rg:8080/"
+		proxy: "http://royal.rg/"
 	});
 });
 function bsReload(done) { browserSync.reload(); done() };
@@ -49,6 +49,7 @@ gulp.task('scripts', function() {
 		'node_modules/izimodal/js/iziModal.min.js',
 		'node_modules/colorthief/dist/color-thief.min.js',
 		'node_modules/wowjs/dist/wow.min.js',
+		// 'app/libs/calculator/price.js',
 		
 		])
 		.pipe(concat('libs.js'))

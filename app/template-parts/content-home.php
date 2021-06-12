@@ -6,7 +6,10 @@
  *
  * @package RoyalPrint
  */
-
+function kFormatter($num) {
+  $formatter = new NumberFormatter('ru_RU',  NumberFormatter::CURRENCY);
+  echo $formatter->formatCurrency($num, 'RUB'), PHP_EOL;
+}
  // product cat
 $productCat = get_term( 6 );
 $productOffsetCat = get_term( 5 );
@@ -67,16 +70,20 @@ $partnerCat = get_term( 9 );
                     <ul class="slider_item_list">
                       <li class="slider_item_list_item">
                         <span><i class="fa fa-tag"></i> Цена</span>
-                        <?if($custom['product_priceparam'][0] == 'on'){?>
-                          <span><?=$custom['product_price'][0]?> <i class="fa fa-rub"></i></span>
+                        <?if(isset($custom['product_priceparam'][0]) and $custom['product_priceparam'][0] == 'on'){?>
+                          <span>
+                            <?=kFormatter($custom['product_price'][0] * 1000)?> 
+                            <i class="fa fa-rub"></i></span>
                         <?}else{?>
                           <span>Индивидуальная <i class="fa fa-rub"></i></span>
                         <?}?>
                       </li>
-                      <li class="slider_item_list_item">
-                        <span><i class="fa fa-archive"></i> Тираж</span>
-                        <span><?=$custom['product_edition'][0]?> шт.</span>
-                      </li>
+                      <?if(isset($custom['product_priceparam'][0]) and $custom['product_priceparam'][0] == 'on'){?>
+                        <li class="slider_item_list_item">
+                          <span><i class="fa fa-archive"></i> Тираж</span>
+                          <span><?=$custom['product_edition'][0]?> шт.</span>
+                        </li>
+                      <?}?>
                     </ul>
                   </div>
                 </div>
@@ -118,16 +125,20 @@ $partnerCat = get_term( 9 );
                     <ul class="slider_item_list">
                       <li class="slider_item_list_item">
                         <span><i class="fa fa-tag"></i> Цена</span>
-                        <?if($custom['product_priceparam'][0] == 'on'){?>
-                          <span><?=$custom['product_price'][0]?> <i class="fa fa-rub"></i></span>
+                        <?if(isset($custom['product_priceparam'][0]) and $custom['product_priceparam'][0] == 'on'){?>
+                          <span>
+                            <?=kFormatter($custom['product_price'][0] * 1000)?> 
+                            <i class="fa fa-rub"></i></span>
                         <?}else{?>
                           <span>Индивидуальная <i class="fa fa-rub"></i></span>
                         <?}?>
                       </li>
-                      <li class="slider_item_list_item">
-                        <span><i class="fa fa-archive"></i> Тираж</span>
-                        <span><?=$product_custom['product_edition'][0]?> шт.</span>
-                      </li>
+                      <?if(isset($custom['product_priceparam'][0]) and $custom['product_priceparam'][0] == 'on'){?>
+                        <li class="slider_item_list_item">
+                          <span><i class="fa fa-archive"></i> Тираж</span>
+                          <span><?=$custom['product_edition'][0]?> шт.</span>
+                        </li>
+                      <?}?>
                     </ul>
                   </div>
                 </div>

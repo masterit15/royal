@@ -90,21 +90,28 @@ function product_field_init() {
 function product_field() {
 	global $post;
 	$custom = get_post_custom($post->ID);
+	$stringArr = explode(',', $custom["_link"][0]);
+	if(count($stringArr) > 1){
+		$link    = str_replace("NaN,", "", $custom["_link"][0]);
+	}else{
+		$link    = str_replace("NaN", "", $custom["_link"][0]);
+	}
 	if(get_post_type() == 'product'){
 	?>
 	<div class="product">
 		<div class="product_fields">
-				<?if (isset($custom['product_priceparam'])) {?>
+				<?if (isset($custom['product_priceparam']) and $custom['product_priceparam'][0] == 'on') {?>
 					<label class="switch" for="product_priceparam">
-						<input type="checkbox" name="priceparam" id="product_priceparam" checked>
+						<input type="checkbox" id="product_priceparam" checked>
 						<span class="priceparam">Цена <span>фиксированная</span></span>
 					</label>
 				<?} else {?>
 					<label class="switch" for="product_priceparam">
-						<input type="checkbox" name="priceparam" id="product_priceparam">
+						<input type="checkbox" id="product_priceparam">
 						<span class="priceparam">Цена <span>индивидуальная</span></span>
 					</label>
 				<?}?>
+				<input type="hidden" name="priceparam" value="<?=$custom['product_priceparam'][0]?>">
 			<div class="group">
 				<label>Цена 0.00 р:</label>
 				<?if (isset($custom['product_price'])) {?>
@@ -140,9 +147,7 @@ function product_field() {
 		</div>
 		<div class="product_images">
 			<div class="frame"></div>
-			<?if(isset($link)){?>
-				<input type="hidden" name="link" class="field" value="<?=$link?>" />
-			<?}?>
+			<input type="hidden" name="link" class="field" value="<?=$link?>" />
 			<div class="images_edition">
 				<div class="load_more" 
 				data-url="<?php echo site_url ()?>/wp-admin/admin-ajax.php" 
@@ -151,6 +156,7 @@ function product_field() {
 				>Показать еще</div>
 				<div class="edition-selected"></div>
 			</div>
+			
 		</div>
 	</div>
 <?
@@ -178,6 +184,7 @@ function moreimage_filter_function(){
 		);
 		$query_images = new WP_Query( $args );
 		foreach ($query_images->posts as $file) {
+			$img = $file->ID;
 		if (in_array($file->ID, $thelinks)) {?>
 			<label class="checked" for="images_<?=$file->ID?>">
 				<input type="checkbox" group="images" value="<?=$file->ID?>" checked />
@@ -190,7 +197,8 @@ function moreimage_filter_function(){
 			</label>
 		<?}
 		$edition++;
-		}
+		}?>
+		<?
 		die();
 }
 // Функция сохранения полей продукта "Цена" и "Тираж"
