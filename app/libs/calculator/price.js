@@ -1,5 +1,4 @@
 $(function () {
-  const tl = gsap.timeline()
   var priceMid = { score: 0 };
   var productSelected = '';
   var formFiles = [];
@@ -24,6 +23,7 @@ $(function () {
                         </div>
                         <div class="errormassege"></div>
                       </div>`
+  // формируем объект пустых свойств продукта
   let product = {
     id: null,
     price: null,
@@ -55,7 +55,6 @@ $(function () {
       return Reflect.set(target, prop, value);
     }
   });
-
   // функция определения значения в поле ввода Телефон/Email
   function validateEmailOrPhone(val) {
     var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
@@ -95,6 +94,7 @@ $(function () {
       $('.fileuploader').html(fileUpload)
       uploaderImg('.add_photo-item', '#js-photo-upload', '#uploadImagesList', false, false);
     }
+    // let edition = Number($('#product_form_edition_number').val())
     let price = (target.price * target.edition) + design
     if (target.price && target.price > 0) {
       $('.price_mid').html(`<div class="price_mid">
@@ -141,12 +141,12 @@ $(function () {
     })
     return false;
   })
+  // округляем тираж в боьшую сторону 
   function roundStep(val1, val2) {
     return Math.ceil(val1 / val2) * val2
   }
   // функция добавления данных 
   function addData(Option){
-    stepQuantity = Number($(Option).data('min-edition'))
     productProxied.id = Number($(Option).data('id'))
     productProxied.price = Number($(Option).data('price'))
     productProxied.edition = Number($(Option).data('min-edition'))
@@ -193,6 +193,7 @@ $(function () {
       
     }
   }
+  // инициализируем всю ворму заказа продукта
   function applicationForm(form) {
     $('.ofer .forms').append(form);
     $('.ofer_text').hide();
@@ -202,43 +203,49 @@ $(function () {
     });
     var stepQuantity = $('option:selected', $('#product_form_select')).data('min-edition')
     addData($('option:selected', $('#product_form_select')))
-    $('#product_form_edition').slider({
-      range: "min",
-      max: productProxied.edition > 10000 ? productProxied.edition * 10 : 10000,
-      min: productProxied.edition,
-      step: productProxied.edition,
-      value: productProxied.edition,
-      slide: function (e, ui) {
-        productProxied.edition = ui.value
-        $('#product_form_edition_number').val(ui.value)
-        rangeValid()
-      },
-      change: function(event, ui) {
-        productProxied.edition = ui.value
-      }
-    });
+    // инициализируем слайдер тиража
+    function initSlider(step){
+      $('#product_form_edition').slider({
+        range: "min",
+        max: productProxied.edition > 10000 ? productProxied.edition * 10 : 10000,
+        min: stepQuantity,
+        step: step,
+        value: step,
+        slide: function (e, ui) {
+          productProxied.edition = ui.value
+          $('#product_form_edition_number').val(ui.value)
+          rangeValid()
+        },
+        // change: function(event, ui) {
+        //   productProxied.edition = ui.value
+        // }
+      });
+    }
     // функция обработки выбора продукта
     if (productSelected != '') {
-      
       $('#product_form_select').select2('val', [productSelected])
       addData($('option:selected', $('#product_form_select')))
+      stepQuantity = Number($('option:selected', $('#product_form_select')).data('min-edition'))
+      initSlider(stepQuantity)
       if(Number($('option:selected', $('#product_form_select')).data('min-edition')) == 0){
         $('.form_range').hide()
       }else{
         $('.form_range').show()
       }
     }
+    // отслеживаем изменения списка продуктов
     $('#product_form_select').on("change", function (e) {
-      console.log(e);
       addData($('option:selected', this))
       $('#product_form_edition_number').val(Number($('option:selected', this).data('min-edition')));
-      $('#product_form_edition').slider("value", Number($('option:selected', this).data('min-edition')));
+      stepQuantity = Number($('option:selected', $('#product_form_select')).data('min-edition'))
+      initSlider(stepQuantity)
       if(Number($('option:selected', this).data('min-edition')) == 0){
         $('.form_range').hide()
       }else{
         $('.form_range').show()
       }
     })
+    // проверям тираж на валидность
     function rangeValid() {
       $('.error_text').remove()
       if (Number($('.value').val()) < productProxied.id) {
@@ -250,40 +257,44 @@ $(function () {
         return true
       }
     }
-
-
     $('#product_form_edition_number').val(productProxied.edition);
-    $('#product_form_edition').slider("value", productProxied.edition);
+    initSlider(productProxied.edition)
     // функция обработки клика по стрелкам поля тираж
     let $quantityArrowMinus = $(".arrow-minus");
     let $quantityArrowPlus = $(".arrow-plus");
-    let $quantityNum = $('#product_form_edition_number') // поле тираж
+    let $quantityNum = $('#product_form_edition_number').data('edition', stepQuantity) // поле тираж
     $quantityArrowMinus.on('click', quantityMinus);
     $quantityArrowPlus.on('click', quantityPlus);
     $quantityNum.on('input', function(){
         rangeValid()
     })
+    // отслеживаем нажатие на стрелку вниз
     function quantityMinus() {
       let val = Number($quantityNum.val())
       $quantityNum.val(val - stepQuantity);
       if(rangeValid()){ 
-        $('#product_form_edition').slider("value", $quantityNum.val())
+        initSlider(Number($quantityNum.val()))
+        productProxied.edition = Number($quantityNum.val())
       }
     }
-
+    // отслеживаем нажатие на стрелку вверх
     function quantityPlus() {
       let val = Number($quantityNum.val())
       $quantityNum.val(val + stepQuantity);
       if(rangeValid()){ 
-        $('#product_form_edition').slider("value", $quantityNum.val())
+        initSlider(Number($quantityNum.val()))
+        productProxied.edition = Number($quantityNum.val())
       }
     }
+    /* отлеживам изменения в поле тираж если не соответствует 
+     минимальному тиражу округляем в большую сторону до валидного значения
+    */
     $('#product_form_edition_number').on('change', function () {
       if ($quantityNum.val() % productProxied.edition) {
         $(this).val(roundStep($quantityNum.val(), productProxied.edition))
       }
     })
-
+    // меняем поле контактоа в зависимости от контекста 
     $('#product_form_mail_or_phone').on('input', function () {
       let res = validateEmailOrPhone($(this).val())
       if (res) {
@@ -293,19 +304,22 @@ $(function () {
         $('.mail_or_phone_val').html('')
       }
     });
+    // закрываем форму при нажатии отмена
     $('#product_form .close').on('click', function () {
       $('.ofer #product_form').remove()
       $('.ofer_text').show()
     });
-    // $('#product_form_design').data('price', productProxied.designPrice)
+    // отслеживаем изменения галочки дизайн
     $('#product_form_design').on('change', function () {
       productProxied.designPrice = $(this).data('price')
     })
+    // обновление токена каптчи
     grecaptcha.ready(function () {
       grecaptcha.execute('6Ld-_vkZAAAAAKBfA3ZcdBimYvqFjpV2jLSYoiZ6', { action: 'homepage' }).then(function (token) {
         document.getElementById('token').value = token
       });
     });
+    // валидация формы
     $('input[required]').on('change', function () {
       let firstName = $('#product_form_fname').val()
       let name = $('#product_form_name').val()
@@ -316,7 +330,7 @@ $(function () {
         $('.price').attr('disabled', '')
       }
     })
-
+    // отправка заявки во внутрянку и на почту
     $('.price').on('click', function (e) {
       e.preventDefault()
       $('input[name="price"]').val($('.prices span').text())
@@ -356,43 +370,7 @@ $(function () {
       })
     });
   }
-  // feedback
-  $('.app_form').on('submit', function (e) {
-    renderInvisibleReCaptcha = null
-    e.preventDefault()
-    e.stopPropagation()
-    $.ajax({
-      url: $(this).attr('action'),
-      type: 'POST',
-      data: new FormData(this),
-      contentType: false,
-      cache: false,
-      processData: false,
-      beforeSend: function () {
-        // NProgress.start();
-        $('.loader').fadeIn(200)
-      },
-      complete: function () {
-        // NProgress.done();
-      },
-      success: function (res) {
-        //console.log(res)
-        if (res.rechaptcha && res.success) {
-          mainToast(time = 5000, param = 'success', res.message, text = '')
-        } else {
-          mainToast(time = 5000, param = 'warning', res.message, text = '')
-        }
-        $('.loader').fadeOut(200)
-      },
-      error: function (xhr, ajaxOptions, thrownError) {
-        mainToast(time = 5000, 'error', "Произошла ошибка отправки, попробуйте еще раз.", text = '')
-        console.log(xhr.responseText)
-        console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-      }
-    })
-    return false;
-  })
-  // fileupload 
+  // функция подгрузки файлов дизайна в форму заказа продукта
   function uploaderImg(addButton, addInput, imgList, reset = false, edit = false) {
     $(addButton).on('click', function () {
       $(addInput).trigger('click');
@@ -543,5 +521,4 @@ $(function () {
     // Отображение лимита при запуске
     limitDisplay();
   }
-
 })

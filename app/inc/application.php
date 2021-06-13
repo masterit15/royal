@@ -57,8 +57,20 @@ function my_custom_application() {
 		)
 	);
 }
-//<span class="update-plugins count-5"><span class="update-count">5</span></span>
 
+add_action('before_publish_post','my_func');
+function my_func($content){
+    $content = "new content";
+    return $content;
+}
+// выводим счетчик в случае если есть не прочитанные заявки
+add_action( 'admin_menu', function() {
+	global $menu;
+	$posts = get_posts('post_type=application&suppress_filters=0&posts_per_page=-1&post_status=draft');
+	$count = count($posts); 
+	// PR($menu);
+	$menu[30][0] = $count > 0 ? 'Заявок <span class="awaiting-mod">' . $count. '</span>' : 'Заявки';
+});
 //  функция вывода прикрепленных файлов
 //metabox
 if($post_types == 'application'){

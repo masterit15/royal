@@ -58,7 +58,6 @@ function my_custom_product() {
 		)
 	);
 }
-
 //Дополнительные поля продукта
 add_action("admin_init", "product_field_init");
 add_action('save_post', 'save_product_field');
