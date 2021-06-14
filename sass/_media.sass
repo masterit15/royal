@@ -36,20 +36,49 @@
       text-align: center
   #hero
     min-height: 100vh
+    height: 100%
+    .mouse
+      display: none
     .header
       margin-top: 15px
-    height: 100%
     .ofer
       height: 100%
+      &_soc
+        text-align: center
+        ul
+          width: 100%
+          justify-content: center
       &_text
-        h2
+        h1
           font-size: 24px
+        p
+          font-size: 16px
       &_action
         button
           width: 100%
 
         a.btn
           display: none
+  .work
+    &_content
+      flex-direction: column
+      padding: 0
+      .close
+        right: 10px
+        top: 20px
+        text-align: center
+        font-size: 1.6rem
+      &_left, &_right
+        position: relative
+        width: 100%
+        padding: 40px 20px 20px
+      &_nav
+        span
+          font-size: 2rem
+          &.left
+            left: 10px
+          &.right
+            right: 10px
   .tabs_item
     font-size: 14px
   .partner_carousel
@@ -57,7 +86,9 @@
   #product_form
     margin-bottom: 30px
     justify-content: center
-
+  #toTop
+    right: 20px
+    bottom: 20px
 /* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px)
   /**/
@@ -75,6 +106,7 @@
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px)
   /**/
+    
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 992px)
   /**/

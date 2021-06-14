@@ -37,16 +37,16 @@
 						?>
 					</a>
           </div>
-          <div class="col-6 col-xl-6">
+          <div class="col-6 col-xl-6 d-none d-xl-block">
             <ul class="top_menu menu"></ul>
           </div>
-          <div class="col-6 col-xl-4">
+          <div class="col-6 col-xl-4 d-none d-xl-block">
           <div class="contact_top">
             <?php dynamic_sidebar( 'Контакты-вверху' ); ?>
           </div>
             
           </div>
-          <div class="col-6 col-xl-2 offset-xl-8 p-xl-0 d-sm-none">
+          <div class="col-6 col-xl-2 offset-xl-8 p-xl-0 d-xl-none">
             <div class="mmenu_btn" @click="toggleMenu" ref="menu">
               <div class="hamburger">
                 <span></span>
