@@ -143,7 +143,10 @@ $(function () {
   })
   // округляем тираж в боьшую сторону 
   function roundStep(val1, val2) {
-    return Math.ceil(val1 / val2) * val2
+    // return Math.ceil(val1 / val2) * val2
+    let startStep = Number($('option:selected', $('#product_form_select')).data('min-edition'))
+    let res = Math.round(Number(val1) / Number(val2)) * Number(val2)
+    return Number(val1) < startStep ? startStep : res
   }
   // функция добавления данных 
   function addData(Option){
@@ -213,6 +216,7 @@ $(function () {
         value: step,
         slide: function (e, ui) {
           productProxied.edition = ui.value
+          stepQuantity = ui.value
           $('#product_form_edition_number').val(ui.value)
           rangeValid()
         },
@@ -249,7 +253,7 @@ $(function () {
     function rangeValid() {
       $('.error_text').remove()
       if (Number($('.value').val()) < productProxied.id) {
-        $('.range').addClass('error').after(`<span class="error_text">Ошибка, тираж должен быть кратным ${productProxied.edition}</span>`)
+        $('.range').addClass('error').after(`<span class="error_text">Ошибка, тираж должен быть кратным ${stepQuantity}</span>`)
         return false
       } else {
         $('.range').removeClass('error').next('.error_text')

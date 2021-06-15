@@ -61,8 +61,25 @@
   z-index: 9999
   display: none
   transition: all .3s ease
+  &.hide
+    display: none!important
   & .fas
+    position: relative
     transition: all .3s ease
+    &::after
+      content: ''
+      position: absolute
+      bottom: -3px
+      left: -20px
+      right: 0
+      margin: auto
+      width: 0
+      height: 0
+      opacity: 0
+      border-style: solid
+      border-width: 10px 3px 0 3px
+      border-color: #e57846 transparent transparent transparent
+      transform: rotate(45deg)
   .stars
     opacity: 0
   &:hover
@@ -71,6 +88,9 @@
     .fas
       transition: all .3s ease
       animation: shakes .7s linear infinite	
+      &::after
+        opacity: 1
+        transition: all .3s ease
     .stars
       opacity: 1	
       transition: all .3s ease	

@@ -9,7 +9,7 @@ var gulp         = require('gulp'),
 
 gulp.task('browser-sync', function() {
 	browserSync.init({
-		proxy: "http://royal.rg/"
+		proxy: "http://royal.rg:8080/"
 	});
 });
 function bsReload(done) { browserSync.reload(); done() };

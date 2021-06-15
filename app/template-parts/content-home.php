@@ -72,7 +72,7 @@ $partnerCat = get_term( 9 );
                         <span><i class="fa fa-tag"></i> Цена</span>
                         <?if(isset($custom['product_priceparam'][0]) and $custom['product_priceparam'][0] == 'on'){?>
                           <span>
-                            <?=kFormatter($custom['product_price'][0] * 1000)?> 
+                            <?=kFormatter($custom['product_price'][0] * $custom['product_edition'][0])?> 
                             <i class="fa fa-rub"></i></span>
                         <?}else{?>
                           <span>Индивидуальная <i class="fa fa-rub"></i></span>
@@ -127,7 +127,7 @@ $partnerCat = get_term( 9 );
                         <span><i class="fa fa-tag"></i> Цена</span>
                         <?if(isset($custom['product_priceparam'][0]) and $custom['product_priceparam'][0] == 'on'){?>
                           <span>
-                            <?=kFormatter($custom['product_price'][0] * 1000)?> 
+                            <?=kFormatter($custom['product_price'][0] * $custom['product_edition'][0])?> 
                             <i class="fa fa-rub"></i></span>
                         <?}else{?>
                           <span>Индивидуальная <i class="fa fa-rub"></i></span>

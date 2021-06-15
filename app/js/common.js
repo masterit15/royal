@@ -48,7 +48,7 @@ $(function () {
     }
     
     window.onload = function() {
-        tl.to('.video-hero', { scale: 1, opacity: 1, duration: 2 })
+        tl.to('.video-hero', { scale: 1, opacity: 1, translateY: '50px', duration: 2 })
         tl.to('.section_nav li', {opacity: 1, translateX: '0px', duration: .2, stagger: .1})
         //tl.to(".grid_item", 1.5, {scale:2, y:50, force3D:true, ease:Elastic.easeOut, rotationY:-90}, 0.08)
     }
@@ -61,6 +61,7 @@ $(function () {
             tl.to('.work_content', 0.6, { translateX: '0%'}).then(()=>{
                 tl.to('.work_content_right .grid_item_media', 0.5, { opacity: 1, translateX: '0px', ease: Power4.easeOut})
                 tl.to('.work_content_left .grid_item_content', 0.5, { opacity: 1, ease: Power4.easeOut})
+                $('#toTop').addClass('hide')
             })
         }else if(el.hasClass('active') && change){
             tl.to('.work_content_right .grid_item_media', 0.5, { opacity: 1, translateX: '0px', ease: Power4.easeOut})
@@ -88,6 +89,7 @@ $(function () {
                 tl.to('.work_content', { translateX: '-100%',  duration: 0.6 })
                 $('.work_content').remove()
                 $('.grid_item').removeClass('active')
+                $('#toTop').removeClass('hide')
             }) 
         })
 
