@@ -31,9 +31,10 @@
         <div class="row">
           <div class="col-6 col-xl-2 p-xl-0">
 						<a href="/" class="logo">
+            royal<br>print 
 						<?php 
-						$name = explode('/', get_bloginfo('name')); 
-						echo  $name[0].'<br>'.$name[1];
+						// $name = explode('/', get_bloginfo('name')); 
+						// echo  $name[0].'<br>'.$name[1];
 						?>
 					</a>
           </div>
@@ -82,17 +83,17 @@
           </div>
           <div class="forms"></div>
           <div class="ofer_text">
-            <?php dynamic_sidebar( 'Контакты-адрес' ); ?>
-            <h1>Полиграфия высшего класса</h1>
-            <p>
-            Оказываем весь комплекс полиграфических услуг:<br> каталоги,
-            листовки, плакаты, календари, журналы, упаковку, и, конечно же,
-            этикетки.
-            </p>
+            <div class="contact_top_item">
+              <ul>
+                <li><i class="fas fa-map-marker-alt"></i> <?=get_theme_mod('address')?>, <a href="tel:<?=get_theme_mod('phone')?>" data-phone="<?=get_theme_mod('phone')?>"><?=get_theme_mod('phone')?></a></li>
+              </ul>
+            </div>
+            <h1><?=get_theme_mod('offer_title')?></h1>
+			      <p><?=get_theme_mod('offer_text')?></p>
             <div class="ofer_action">
               <button type="button" id="price_form_get" data-form="<?=get_template_directory_uri()?>/ajax-form.php" class="btn btn-secondary">Заказать</button>
               <!-- <a href="te" class="btn btn-outline-secondary" >Подробнее</a> -->
-              <a href="tel:+79280704011" class="btn btn-outline-secondary">Позвонить</a>
+              <a href="tel:<?=get_theme_mod('phone')?>" class="btn btn-outline-secondary">Позвонить</a>
             </div>
           </div>
         </div>

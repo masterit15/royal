@@ -282,6 +282,14 @@ require get_template_directory() . '/inc/post_dublicate.php';
 require get_template_directory() . '/inc/add_post_thumbs.php';
 
 /**
+ *	Функция вывода в постах прикрепленной картинки
+ */
+require get_template_directory() . '/inc/mycustomizer.php';
+
+
+
+
+/**
  * Load Jetpack compatibility file.
  */
 if (defined('JETPACK__VERSION')) {
