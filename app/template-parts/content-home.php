@@ -199,6 +199,7 @@ $partnerCat = get_term( 9 );
           array(
           'post_type' => 'works',
           'post_status' => 'publish',
+          'posts_per_page'=> -1
           ));
           if ($product->have_posts()) {while ($product->have_posts()) {
             $product->the_post();
@@ -228,6 +229,7 @@ $partnerCat = get_term( 9 );
         array(
         'post_type' => 'partner',
         'post_status' => 'publish',
+        'posts_per_page'=> -1
         ));
         if ($product->have_posts()) {while ($product->have_posts()) {$product->the_post();
         $product_custom = get_post_custom($post->ID);
