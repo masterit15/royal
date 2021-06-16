@@ -70,13 +70,13 @@ add_action('customize_register', function($customizer) {
 			'type' => 'text',
 		)
 	);
-  // заголовок сайта (оффера)
+  // Описание сайта (оффера)
   $customizer->add_setting('offer_text', 
 		array('default' => 'Оказываем весь комплекс полиграфических услуг: каталоги, листовки, плакаты, календари, журналы, упаковку, и, конечно же, этикетки.')
 	);
 	
 	$customizer->add_control('offer_text', array(
-			'label' => 'Заголовок (оффера)',
+			'label' => 'Описание (оффера)',
 			'section' => 'section_two',
 			'type' => 'textarea',
 		)
