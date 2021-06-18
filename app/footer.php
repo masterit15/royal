@@ -41,7 +41,7 @@
 					</div>
 				</div>
 		</div>
-		<div class="cophyright">RoyalPrint © 2020. Все права защищены </div>
+		<div class="cophyright"><?=get_theme_mod('copyright')?></div>
 	</footer>
 	<div id="toTop">
 		<i class="fas fa-rocket"></i>

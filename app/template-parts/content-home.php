@@ -26,7 +26,7 @@ $partnerCat = get_term( 9 );
 ?>
 <section id="services" data-name="<?=$productCat->name?>">
   <div class="section_title">
-  <h1>Что мы можем Вам предложить</h1>
+  <h1><?=get_theme_mod('product_title')?></h1>
   </div>
   <div class="container-fluid">
     <div class="row">
@@ -113,9 +113,9 @@ $partnerCat = get_term( 9 );
                 ),
                 ));
                 if ($product->have_posts()) {while ($product->have_posts()) {$product->the_post();
-                $product_custom = get_post_custom($post->ID);
+                $custom = get_post_custom($post->ID);
                 ?>
-                <div class="slider_item" style="background-image: url('<?=get_the_post_thumbnail_url($post->ID, 'large')?>')">
+                <div class="slider_item" data-select="<?php the_title();?>-<?=$post->ID?>" style="background-image: url('<?=get_the_post_thumbnail_url($post->ID, 'large')?>')">
                   <div class="slider_item_imgwrap">
                     <div class="slider_item_img" style="background-image: url('<?=get_the_post_thumbnail_url($post->ID, 'large')?>')"></div>
                   </div>
@@ -181,18 +181,23 @@ $partnerCat = get_term( 9 );
 </section>
 <section id="works" data-name="<?=$worksCat->name;?>">
   <div class="section_title">
-    <h1>Результаты нашей работы</h1>
-  </div>
-  <div class="decor_img">
-    <img src="<?=get_template_directory_uri()?>/img/color_btl.png" alt="">
+    <h1><?=get_theme_mod('works_title')?></h1>
   </div>
   <div class="container">
     <div class="row">
       <div class="col-12 col-xl-6 offset-xl-3">
         <div class="section_desc">
-        <?=$worksCat->description;?>
+          <?=get_theme_mod('works_text')?>
         </div>
       </div>
+    </div>
+  </div>
+  
+  <div class="decor_img">
+    <img src="<?=get_template_directory_uri()?>/img/color_btl.png" alt="">
+  </div>
+  <div class="container">
+    <div class="row">
         <div class="parent">
           <?
           $product = new WP_Query(
@@ -219,7 +224,7 @@ $partnerCat = get_term( 9 );
 </section>
 <section id="partner" data-name="<?=$partnerCat->name;?>">
   <div class="section_title">
-    <h1>С кем мы сотрудничаем</h1>
+    <h1><?=get_theme_mod('partner_title')?></h1>
   </div>
   <div class="container">
     <div class="row">

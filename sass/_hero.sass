@@ -16,7 +16,7 @@
       margin: 15px auto
       li
         a
-          color: #4A4A4A
+          color: $defaultColor
           font-family: $titleFont
           text-decoration: none
           font-weight: 600
@@ -147,17 +147,18 @@
       max-width: 721px
       h1
         font-family: $titleFont
-        color: #4A4A4A
+        color: $defaultColor
         line-height: 90%
         font-size: 96px
       p
         max-width: 570px
         margin: 30px 0
         font-weight: 400
-        color:  #4A4A4A
+        color:  $defaultColor
         font-size: 24px
-        opacity: 0.8
         font-family: $futuraBook
+      .contact_top_item
+        margin-top: 20px
     img
       max-width: 100%
       height: auto
@@ -172,7 +173,7 @@
         margin-right: 14px
         // letter-spacing: 0.02em;
       a
-        color: #4A4A4A
+        color: $defaultColor
         font-weight: 400;
         text-decoration: none
         font-family: $robotoRegular
@@ -184,7 +185,7 @@
       display: flex
       justify-content: flex-start
       flex-direction: column
-      color: rgba(#4A4A4A, 0.5)
+      color: $defaultColor
       margin-top: 191px
       z-index: 20
       ul
@@ -198,10 +199,10 @@
         li
           
           a
-            color: rgba(#4A4A4A, 0.5)
+            color: $defaultColor
             font-size: 18px
             &:hover
-              color: rgba(#4A4A4A, 0.8)
+              color: $defaultColor
   .mouse
     width: 100%
     height: auto
@@ -211,7 +212,7 @@
     align-items: center
     transform: translateY(-40px)
     & .fa
-      color: rgba(#4A4A4A, 0.32)
+      color: rgba($defaultColor, 0.32)
       animation: mouse 1.3s linear 1s infinite
     & span
       display: block
@@ -219,7 +220,7 @@
       width: 24px
       height: 35px
       border-radius: 50px
-      border: 2px solid rgba(#4A4A4A, 0.32)
+      border: 2px solid rgba($defaultColor, 0.32)
       animation: mouse 1.3s linear 1s infinite
       &:before
         content: ''
@@ -231,7 +232,7 @@
         top: 6px
         margin: auto
         border-radius: 10px
-        background-color: rgba(#4A4A4A, 0.32)
+        background-color: rgba($defaultColor, 0.32)
 @keyframes mouse
   0%
     transform: translateY(0px)
