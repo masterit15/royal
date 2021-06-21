@@ -95,7 +95,8 @@ $(function () {
       uploaderImg('.add_photo-item', '#js-photo-upload', '#uploadImagesList', false, false);
     }
     // let edition = Number($('#product_form_edition_number').val())
-    let price = (target.price * target.edition) + design
+
+    let price = (target.edition * target.price ) + design
     if (target.price && target.price > 0) {
       $('.price_mid').html(`<div class="price_mid">
                                       <div class="prices"><i class="fas fa-ruble-sign"></i> <span></span></div>

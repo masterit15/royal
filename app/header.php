@@ -102,7 +102,10 @@
             </div>
             <div class="contact_top_item">
               <ul>
-                <li><i class="fas fa-map-marker-alt"></i> <?=get_theme_mod('address')?></li>
+              <?
+              $address = explode(',',get_theme_mod('address'))
+              ?>
+                <li><i class="fas fa-map-marker-alt"></i> <?echo $address[0] .', '. $address[1] .', <br> <span>'. $address[2].'</span>'?></li>
                 <li><i class="fas fa-phone"></i> <a href="tel:<?=get_theme_mod('phone')?>" data-phone="<?=get_theme_mod('phone')?>"><?=get_theme_mod('phone')?></a></li>
               </ul>
             </div>
